@@ -1,0 +1,26 @@
+<form>
+  <div class="form-group">
+    <label for="comment">Post a comment:</label>
+    <input type="text"class="form-control" id="title" #commentTitle (keyup.enter)="addTitle(commentTitle.value)"
+      placeholder="Title">
+    <input type="text" class="form-control" id="comment" #newComment (keyup.enter)="addComment(newComment.value)"
+      placeholder="Your comment">
+
+    <select class="form-control" #TypeOfComment (keyup.enter)="addTypeOfComment(TypeOfComment.value)" required>
+      <option disabled selected value> -- select an option -- </option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+  </div>
+
+  <button
+    (click)="addComment(newComment.value); addTypeOfComment(TypeOfComment.value); addTitle(commentTitle.value); newComment.value=''; commentTitle.value='' " class="btn btn-primary">Add</button>
+</form>
+
+<ul>
+  <h3>Comments:</h3>
+  <li *ngFor="let title of titles">{{title}}</li>
+  <li *ngFor="let comment of comments">{{comment}}</li>
+  <li *ngFor="let type of types">{{type}}</li>
+</ul>
